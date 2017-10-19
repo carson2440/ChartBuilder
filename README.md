@@ -11,7 +11,8 @@ Usage
 -----
 
 In order to use the library, there are 2 different options:
-**1. Gradle dependency** (recommended)
+
+**Gradle dependency** (recommended)
 
   -  Add the following to your project level `build.gradle`:
  
