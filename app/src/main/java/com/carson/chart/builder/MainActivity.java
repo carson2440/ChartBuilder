@@ -170,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements OnChartGestureLis
         chartBar.getDescription().setEnabled(false);
         chartBar.setNoDataText("暂无数据");
         chartBar.setOnChartGestureListener(this);
+        chartBar.setOnTouchListener(new BMFBarLineChartTouchListener(chartBar, chartBar.getViewPortHandler().getMatrixTouch(), 3.f));
         chartBar.setOnChartValueSelectedListener(this);
 
         chartBar.setTouchEnabled(true);

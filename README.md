@@ -2,10 +2,15 @@
 
 [![images](https://github.com/carson2440/ChartBuilder/blob/master/images/device-2017-10-19-101634.png)](https://github.com/carson2440/ChartBuilder)
 
-ChartBuilder 底层使用[**MPAndroidChart**](https://github.com/PhilJay/MPAndroidChart)库，在此基础上进行扩展：
+ChartBuilder 底层使用[**MPAndroidChart**](https://github.com/PhilJay/MPAndroidChart)库，在其基础上进行扩展：
 
 1：支持分段显示with one LineDataSet。
 （MPAndroidChart分段显示需要使用多个LineDataSet，并且在分段之间滑动选择数据点存在跳点的bug）
+
+2：仿雪球交互效果，ChartLine图形缩放后，长按移动显示高亮点。
+
+3：优化长按事件的响应速度更灵敏。
+
 
 Usage
 -----
