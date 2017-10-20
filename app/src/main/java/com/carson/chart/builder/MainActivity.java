@@ -1,7 +1,6 @@
 package com.carson.chart.builder;
 
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -19,8 +18,6 @@ import com.carson.chartbuilder.BMFLineChartRenderer;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.MarkerImage;
-import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -175,8 +172,6 @@ public class MainActivity extends AppCompatActivity implements OnChartGestureLis
         data.setDrawValues(false);
         chartLine.setData(data);
         chartLine.animateX(300);
-
-
     }
 /////////////////////////////////////////////////////////////////////////////
 
