@@ -11,7 +11,6 @@ ChartBuilder 底层使用[**MPAndroidChart**](https://github.com/PhilJay/MPAndro
 
 3：优化长按事件的响应速度更灵敏。
 
-
 Usage
 -----
 

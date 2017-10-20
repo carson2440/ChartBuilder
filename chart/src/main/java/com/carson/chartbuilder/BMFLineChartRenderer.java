@@ -15,14 +15,10 @@ import java.util.ArrayList;
 
 /**
  * Created by carson on 2017/10/18.
+ * 实现在一个LineDataSet 下分段画线。
  */
 
 public class BMFLineChartRenderer extends LineChartRenderer {
-
-
-    public static final int[] LINE_COLORS = {
-            Color.rgb(72, 192, 218), Color.rgb(72, 192, 218), Color.rgb(72, 192, 218),
-            Color.rgb(72, 192, 218), Color.rgb(72, 192, 218)};
 
     public BMFLineChartRenderer(LineDataProvider chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(chart, animator, viewPortHandler);
@@ -57,17 +53,21 @@ public class BMFLineChartRenderer extends LineChartRenderer {
         }
 
         for (int i = 0; i < subSets.size(); i++) {
-            LineDataSet setNew = new LineDataSet(subSets.get(i), "");
-            setNew.setDrawCircles(true);//是否画点
-            setNew.setColors(LINE_COLORS);
-            setNew.setCircleColor(Color.rgb(72, 192, 218));
-            setNew.setCircleRadius(1.2f);
-            setNew.setDrawCircleHole(false);
-            setNew.setLineWidth(1.1f);
-            setNew.setDrawFilled(true);//填充
-            setNew.setDrawHorizontalHighlightIndicator(false);
-            setNew.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-            setNew.setCubicIntensity(0.2f);
+            LineDataSet user = (LineDataSet) dataSet;
+            LineDataSet setNew = new LineDataSet(subSets.get(i), user.getLabel());
+            setNew.setDrawCircles(user.isDrawCirclesEnabled());//是否画点
+            setNew.setColors(user.getColors());
+            setNew.setCircleColor(user.getCircleColor(0));
+            setNew.setCircleRadius(user.getCircleRadius());
+            setNew.setDrawCircleHole(user.isDrawCircleHoleEnabled());
+            setNew.setLineWidth(user.getLineWidth());
+            setNew.setDrawFilled(user.isDrawFilledEnabled());//填充
+            setNew.setDrawHorizontalHighlightIndicator(user.isHorizontalHighlightIndicatorEnabled());
+            setNew.setMode(user.getMode());
+            setNew.setCubicIntensity(user.getCubicIntensity());
+            setNew.setFillAlpha(user.getFillAlpha());
+            setNew.setHighlightEnabled(user.isHighlightEnabled());
+            setNew.setFormLineDashEffect(user.getFormLineDashEffect());
             super.drawCubicBezier(setNew);
         }
     }

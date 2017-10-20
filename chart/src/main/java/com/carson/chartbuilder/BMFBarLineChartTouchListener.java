@@ -79,12 +79,12 @@ public class BMFBarLineChartTouchListener extends ChartTouchListener<BarLineChar
     public BMFBarLineChartTouchListener(BarLineChartBase<? extends BarLineScatterCandleBubbleData<? extends
             IBarLineScatterCandleBubbleDataSet<? extends Entry>>> chart, Matrix touchMatrix, float dragTriggerDistance) {
         super(chart);
+        super.mGestureDetector = null;
+        this.mGestureDetector = new BMFGestureDetector(chart.getContext(), this);
+
         this.mMatrix = touchMatrix;
-
         this.mDragTriggerDist = Utils.convertDpToPixel(dragTriggerDistance);
-
         this.mMinScalePointerDistance = Utils.convertDpToPixel(3.5f);
-        mGestureDetector = new BMFGestureDetector(chart.getContext(), this);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -104,7 +104,7 @@ public class BMFBarLineChartTouchListener extends ChartTouchListener<BarLineChar
         }
 
         if (mTouchMode == NONE) {
-            mGestureDetector.onTouchEvent(event);
+            this.mGestureDetector.onTouchEvent(event);
         }
 
         if (!mChart.isDragEnabled() && (!mChart.isScaleXEnabled() && !mChart.isScaleYEnabled()))
@@ -159,22 +159,20 @@ public class BMFBarLineChartTouchListener extends ChartTouchListener<BarLineChar
             case MotionEvent.ACTION_MOVE:
 
                 if (mTouchMode == DRAG) {
+                        mChart.disableScroll();
+                        performDrag(event);
 
-                    mChart.disableScroll();
-                    performDrag(event);
+                    } else if (mTouchMode == X_ZOOM || mTouchMode == Y_ZOOM || mTouchMode == PINCH_ZOOM) {
 
-                } else if (mTouchMode == X_ZOOM || mTouchMode == Y_ZOOM || mTouchMode == PINCH_ZOOM) {
+                        mChart.disableScroll();
+                        if (mChart.isScaleXEnabled() || mChart.isScaleYEnabled())
+                            performZoom(event);
 
-                    mChart.disableScroll();
+                    } else if (mTouchMode == NONE
+                            && Math.abs(distance(event.getX(), mTouchStartPoint.x, event.getY(),
+                            mTouchStartPoint.y)) > mDragTriggerDist) {
 
-                    if (mChart.isScaleXEnabled() || mChart.isScaleYEnabled())
-                        performZoom(event);
-
-                } else if (mTouchMode == NONE
-                        && Math.abs(distance(event.getX(), mTouchStartPoint.x, event.getY(),
-                        mTouchStartPoint.y)) > mDragTriggerDist) {
-
-                    if (mChart.hasNoDragOffset()) {
+                        if (mChart.hasNoDragOffset()) {
 
                         if (!mChart.isFullyZoomedOut() && mChart.isDragEnabled()) {
                             mTouchMode = DRAG;

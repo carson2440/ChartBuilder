@@ -24,7 +24,8 @@ public class BMFGestureDetector {
 
     //    private static final int LONGPRESS_TIMEOUT = ViewConfiguration.getLongPressTimeout();
     private static final int LONGPRESS_TIMEOUT = 120;
-    private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
+    //    private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
+    private static final int TAP_TIMEOUT = 80;
     private static final int DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
 
     // constants for Message.what used by GestureHandler below
