@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements OnChartGestureLis
     BarChart chartBar;
     private long serverTime;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

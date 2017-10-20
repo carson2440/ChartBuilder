@@ -14,7 +14,6 @@ import android.view.ViewConfiguration;
  */
 
 public class BMFGestureDetector {
-    // TODO: ViewConfiguration
     private int mBiggerTouchSlopSquare = 20 * 20;
 
     private int mTouchSlopSquare;
