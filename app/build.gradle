@@ -6,9 +6,9 @@ android {
     defaultConfig {
         applicationId "com.carson.chart.builder"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 14
         versionCode 1
-        versionName "0.9.7"
+        versionName "0.9.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
